@@ -10,13 +10,6 @@ FROM php:7.1.0RC6-fpm-alpine
 # Maintainer
 MAINTAINER Connor <connor.niu@gmail.com>
 
-# Environments
-#ENV TIMEZONE            Asia/Shanghai
-#
-#RUN	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
-#	echo "${TIMEZONE}" > /etc/timezone
-
-
 
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
@@ -47,7 +40,6 @@ RUN \
     docker-php-ext-enable redis.so && \
     docker-php-ext-enable mongodb.so && \
     docker-php-source delete
-
 
 # Set Workdir
 WORKDIR /web/app
