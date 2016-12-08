@@ -5,6 +5,7 @@ MAINTAINER Connor <connor.niu@gmail.com>
 
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
+        curl \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
@@ -33,6 +34,7 @@ RUN \
     docker-php-ext-enable mongodb.so && \
     docker-php-source delete
 
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 # Set Workdir
 WORKDIR /web/app
 
