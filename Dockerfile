@@ -1,5 +1,4 @@
 FROM php:7.1.0-fpm-alpine
-#FROM php:7.1.0RC6-fpm-alpine
 
 # Maintainer
 MAINTAINER Connor <connor.niu@gmail.com>
