@@ -5,6 +5,7 @@ MAINTAINER Connor <connor.niu@gmail.com>
 
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
+        curl \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
