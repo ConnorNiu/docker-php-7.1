@@ -26,11 +26,11 @@ RUN \
     pecl clear-cache && \
     apk del .mongodb-ext-build-deps
 
-RUN \
-    docker-php-ext-install pdo_mysql opcache exif gd sockets soap && \
-    docker-php-ext-enable redis.so && \
-    docker-php-ext-enable mongodb.so && \
-    docker-php-source delete
+#RUN \
+#    docker-php-ext-install pdo_mysql opcache exif gd sockets soap && \
+#    docker-php-ext-enable redis.so && \
+#    docker-php-ext-enable mongodb.so && \
+#    docker-php-source delete
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
