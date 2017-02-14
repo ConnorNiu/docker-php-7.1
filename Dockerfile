@@ -2,7 +2,6 @@ FROM php:7.1.1-fpm-alpine
 
 # Maintainer
 MAINTAINER Connor <connor.niu@gmail.com>
-
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
         curl \
