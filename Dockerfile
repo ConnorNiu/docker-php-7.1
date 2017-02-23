@@ -38,6 +38,7 @@ RUN \
 RUN \
     docker-php-ext-install pdo_mysql opcache exif gd sockets soap && \
     docker-php-ext-enable redis.so && \
+    docker-php-ext-enable xdebug.so && \
     docker-php-ext-enable mongodb.so && \
     docker-php-source delete
 
