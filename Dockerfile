@@ -31,14 +31,7 @@ RUN \
     docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
-RUN \
-    apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
-    pecl install redis && \
-    pecl install xdebug && \
-    pecl install mongodb && \
-    pecl clear-cache && \
-    apk del .mongodb-ext-build-deps
-
+# Write Xdebug Configuration file
 RUN \
  	echo "xdebug.remote_enable=on\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "xdebug.remote_autostart=off\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
@@ -46,11 +39,23 @@ RUN \
     echo "xdebug.remote_handler=dbgp\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "xdebug.remote_connect_back=0\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+# Install and Enable Redis Xdebug Mongodb
+RUN \
+    apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
+    pecl install redis && \
+    pecl install xdebug && \
+    pecl install mongodb && \
+    pecl clear-cache && \
+    apk del .mongodb-ext-build-deps && \
+	docker-php-ext-enable redis.so && \
+	docker-php-ext-enable xdebug.so && \
+	docker-php-ext-enable mongodb.so
+
+
+
+# Install PHP extention
 RUN \
     docker-php-ext-install pdo_mysql opcache exif gd sockets soap && \
-    docker-php-ext-enable redis.so && \
-    docker-php-ext-enable xdebug.so && \
-    docker-php-ext-enable mongodb.so && \
     docker-php-source delete
 
 # Install Composer
