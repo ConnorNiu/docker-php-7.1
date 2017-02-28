@@ -39,6 +39,7 @@ RUN \
 #    echo "xdebug.remote_handler=dbgp\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
 #    echo "xdebug.remote_connect_back=0\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+
 # Install and Enable Redis Xdebug Mongodb
 RUN \
     apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
