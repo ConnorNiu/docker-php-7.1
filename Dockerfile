@@ -1,7 +1,16 @@
+# Use Alpine Linux
 FROM php:7.1.2-fpm-alpine
 
 # Maintainer
 MAINTAINER Connor <connor.niu@gmail.com>
+
+# Set Timezone Environments
+ENV TIMEZONE            Asia/Shanghai
+RUN \
+	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
+	echo "${TIMEZONE}" > /etc/timezone
+
+# Install Software
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
         curl \
@@ -42,9 +51,14 @@ RUN \
     docker-php-ext-enable mongodb.so && \
     docker-php-source delete
 
-RUN \
-	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
+# Work Directory
+WORKDIR /var/www/html
+
+# Expose ports
 EXPOSE 9000
 
+# Entry point
 CMD ["php-fpm"]
