@@ -7,8 +7,10 @@ MAINTAINER Connor <connor.niu@gmail.com>
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
 RUN \
+	apk add --update tzdata && \
 	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
-	echo "${TIMEZONE}" > /etc/timezone
+	echo "${TIMEZONE}" > /etc/timezone && \
+	apk del tzdata
 
 # Install Software
 RUN apk add --no-cache --virtual .ext-deps \
