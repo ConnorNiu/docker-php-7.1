@@ -17,6 +17,7 @@ RUN apk add --no-cache --virtual .ext-deps \
         bash \
         curl \
         git \
+        nodejs \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
@@ -51,6 +52,12 @@ RUN \
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+
+# Install APIDoc
+RUN npm install apidoc -g
+
+# Install APIDoc for Grunt
+RUN npm install grunt-apidoc --save-dev
 
 # Copy php.ini
 COPY php.ini /usr/local/etc/php
