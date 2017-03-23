@@ -44,12 +44,10 @@ RUN \
 	docker-php-ext-enable xdebug.so && \
 	docker-php-ext-enable mongodb.so
 
+# Create Xdebug folder
 RUN \
-    echo "xdebug.remote_enable=on\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.remote_autostart=off\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.remote_port=9000\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.remote_handler=dbgp\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
-    echo "xdebug.remote_connect_back=0\n" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+	mkdir -p /usr/local/var/log/xdebug/trace && \
+	mkdir -p /usr/local/var/log/xdebug/profiler
 
 
 # Install PHP extention
