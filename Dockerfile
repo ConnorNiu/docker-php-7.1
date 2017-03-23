@@ -44,12 +44,6 @@ RUN \
 	docker-php-ext-enable xdebug.so && \
 	docker-php-ext-enable mongodb.so
 
-# Create Xdebug folder
-RUN \
-	mkdir -p /usr/local/var/log/xdebug/trace && \
-	mkdir -p /usr/local/var/log/xdebug/profiler
-
-
 # Install PHP extention
 RUN \
     docker-php-ext-install pdo_mysql opcache exif gd sockets soap && \
