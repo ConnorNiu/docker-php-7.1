@@ -25,6 +25,7 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype-dev \
         autoconf
 RUN \
+    docker-php-ext-configure pdo && \
     docker-php-ext-configure pdo_mysql && \
     docker-php-ext-configure opcache && \
     docker-php-ext-configure exif && \
@@ -46,7 +47,7 @@ RUN \
 
 # Install PHP extention
 RUN \
-    docker-php-ext-install pdo_mysql pdo opcache exif gd sockets soap && \
+    docker-php-ext-install pdo pdo_mysql opcache exif gd sockets soap && \
     docker-php-source delete
 
 # Install Composer
