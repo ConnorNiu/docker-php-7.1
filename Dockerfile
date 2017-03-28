@@ -46,7 +46,7 @@ RUN \
 
 # Install PHP extention
 RUN \
-    docker-php-ext-install pdo_mysql pdo_sqlite opcache exif gd sockets soap && \
+    docker-php-ext-install pdo_mysql pdo pdo_sqlite opcache exif gd sockets soap && \
     docker-php-source delete
 
 # Install Composer
