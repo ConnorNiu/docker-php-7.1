@@ -39,8 +39,6 @@ RUN docker-php-ext-configure tokenizer
 RUN docker-php-ext-configure zip
 RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
-#RUN docker-php-ext-configure gettext
-#RUN docker-php-ext-configure mcrypt
 RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
@@ -69,11 +67,9 @@ RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install sysvsem
 RUN docker-php-ext-install tokenizer
 RUN docker-php-ext-install zip
-RUN docker-php-ext-install zlib
 RUN docker-php-ext-install shmop
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install gettext
-RUN docker-php-ext-install mcrypt
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install gd
 
