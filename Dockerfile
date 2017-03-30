@@ -25,26 +25,26 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype-dev \
         libmcrypt \
         autoconf
-RUN \
-    docker-php-ext-configure pdo && \
-    docker-php-ext-configure pdo_mysql && \
-    docker-php-ext-configure pdo_dblib && \
-    docker-php-ext-configure opcache && \
-    docker-php-ext-configure exif && \
-    docker-php-ext-configure sockets && \
-    docker-php-ext-configure soap && \
-    docker-php-ext-configure bcmath && \
-    docker-php-ext-configure pcntl && \
-    docker-php-ext-configure sysvsem && \
-    docker-php-ext-configure tokenizer && \
-    docker-php-ext-configure zip && \
-    docker-php-ext-configure zlib && \
-    docker-php-ext-configure shmop && \
-    docker-php-ext-configure xmlrpc && \
-    docker-php-ext-configure gettext && \
-    docker-php-ext-configure mcrypt && \
-    docker-php-ext-configure mysqli && \
-     docker-php-ext-configure gd \
+
+RUN docker-php-ext-configure pdo
+RUN docker-php-ext-configure pdo_mysql
+RUN docker-php-ext-configure pdo_dblib
+RUN docker-php-ext-configure opcache
+RUN docker-php-ext-configure exif
+RUN docker-php-ext-configure sockets
+RUN docker-php-ext-configure soap
+RUN docker-php-ext-configure bcmath
+RUN docker-php-ext-configure pcntl
+RUN docker-php-ext-configure sysvsem
+RUN docker-php-ext-configure tokenizer
+RUN docker-php-ext-configure zip
+RUN docker-php-ext-configure zlib
+RUN docker-php-ext-configure shmop
+RUN docker-php-ext-configure xmlrpc
+RUN docker-php-ext-configure gettext
+RUN docker-php-ext-configure mcrypt
+RUN docker-php-ext-configure mysqli
+RUN docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
 # Install and Enable Redis Xdebug Mongodb
@@ -60,9 +60,26 @@ RUN \
 	docker-php-ext-enable mongodb.so
 
 # Install PHP extention
-RUN \
-    docker-php-ext-install pdo pdo_mysql pdo_dblib opcache exif sockets soap bcmath pcntl sysvsem tokenizer zip zlib shmop xmlrpc gettext mcrypt mysqli gd && \
-    docker-php-source delete
+RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_dblib
+RUN docker-php-ext-install opcache
+RUN docker-php-ext-install exif
+RUN docker-php-ext-install sockets
+RUN docker-php-ext-install soap
+RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install pcntl
+RUN docker-php-ext-install sysvsem
+RUN docker-php-ext-install tokenizer
+RUN docker-php-ext-install zip
+RUN docker-php-ext-install zlib
+RUN docker-php-ext-install shmop
+RUN docker-php-ext-install xmlrpc
+RUN docker-php-ext-install gettext
+RUN docker-php-ext-install mcrypt
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install gd
+RUN docker-php-source delete
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
