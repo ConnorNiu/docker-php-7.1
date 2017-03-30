@@ -38,7 +38,7 @@ RUN docker-php-ext-configure pcntl
 RUN docker-php-ext-configure sysvsem
 RUN docker-php-ext-configure tokenizer
 RUN docker-php-ext-configure zip
-RUN docker-php-ext-configure zlib
+#RUN docker-php-ext-configure zlib
 RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
 RUN docker-php-ext-configure gettext
