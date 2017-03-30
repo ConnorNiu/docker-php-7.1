@@ -28,7 +28,7 @@ RUN apk add --no-cache --virtual .ext-deps \
 
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
-RUN docker-php-ext-configure pdo_dblib
+#RUN docker-php-ext-configure pdo_dblib
 RUN docker-php-ext-configure opcache
 RUN docker-php-ext-configure exif
 RUN docker-php-ext-configure sockets
