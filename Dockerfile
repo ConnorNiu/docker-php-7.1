@@ -23,14 +23,27 @@ RUN apk add --no-cache --virtual .ext-deps \
         libpng-dev \
         libxml2-dev \
         freetype-dev \
+        libmcrypt \
         autoconf
 RUN \
     docker-php-ext-configure pdo && \
     docker-php-ext-configure pdo_mysql && \
+    docker-php-ext-configure pdo_dblib && \
     docker-php-ext-configure opcache && \
     docker-php-ext-configure exif && \
     docker-php-ext-configure sockets && \
-    docker-php-ext-configure gd \
+    docker-php-ext-configure gd && \
+    docker-php-ext-configure soap \
+    docker-php-ext-configure bcmath \
+    docker-php-ext-configure pcntl \
+    docker-php-ext-configure sysvsem \
+    docker-php-ext-configure tokenizer \
+    docker-php-ext-configure zlib \
+    docker-php-ext-configure shmop \
+    docker-php-ext-configure xmlrpc \
+    docker-php-ext-configure gettext \
+    docker-php-ext-configure mcrypt \
+    docker-php-ext-configure mysqli \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
 # Install and Enable Redis Xdebug Mongodb
@@ -47,7 +60,7 @@ RUN \
 
 # Install PHP extention
 RUN \
-    docker-php-ext-install pdo pdo_mysql opcache exif gd sockets soap && \
+    docker-php-ext-install pdo pdo_mysql pdo_dblib opcache exif sockets gd soap bcmath pcntl sysvsem tokenizer zlib shmop xmlrpc gettext mcrypt mysqli && \
     docker-php-source delete
 
 # Install Composer
