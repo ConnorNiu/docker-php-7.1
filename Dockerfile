@@ -69,7 +69,6 @@ RUN docker-php-ext-install tokenizer
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install shmop
 RUN docker-php-ext-install xmlrpc
-RUN docker-php-ext-install gettext
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install gd
 
