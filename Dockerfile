@@ -61,7 +61,7 @@ RUN \
 
 # Install PHP extention
 RUN \
-    docker-php-ext-install pdo pdo_mysql pdo_dblib opcache exif sockets gd soap bcmath pcntl sysvsem tokenizer zip zlib shmop xmlrpc gettext mcrypt mysqli && \
+    docker-php-ext-install pdo pdo_mysql pdo_dblib opcache exif sockets soap bcmath pcntl sysvsem tokenizer zip zlib shmop xmlrpc gettext mcrypt mysqli gd && \
     docker-php-source delete
 
 # Install Composer
