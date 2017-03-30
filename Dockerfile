@@ -33,17 +33,17 @@ RUN \
     docker-php-ext-configure exif && \
     docker-php-ext-configure sockets && \
     docker-php-ext-configure gd && \
-    docker-php-ext-configure soap \
-    docker-php-ext-configure bcmath \
-    docker-php-ext-configure pcntl \
-    docker-php-ext-configure sysvsem \
-    docker-php-ext-configure tokenizer \
-    docker-php-ext-configure zlib \
-    docker-php-ext-configure shmop \
-    docker-php-ext-configure xmlrpc \
-    docker-php-ext-configure gettext \
-    docker-php-ext-configure mcrypt \
-    docker-php-ext-configure mysqli \
+    docker-php-ext-configure soap && \
+    docker-php-ext-configure bcmath && \
+    docker-php-ext-configure pcntl && \
+    docker-php-ext-configure sysvsem && \
+    docker-php-ext-configure tokenizer && \
+    docker-php-ext-configure zlib && \
+    docker-php-ext-configure shmop && \
+    docker-php-ext-configure xmlrpc && \
+    docker-php-ext-configure gettext && \
+    docker-php-ext-configure mcrypt && \
+    docker-php-ext-configure mysqli && \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
 # Install and Enable Redis Xdebug Mongodb
