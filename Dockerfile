@@ -23,6 +23,7 @@ RUN apk add --no-cache --virtual .ext-deps \
         libpng-dev \
         libxml2-dev \
         freetype-dev \
+        freetype \
         libmcrypt \
         autoconf
 
