@@ -22,8 +22,8 @@ RUN apk add --no-cache --virtual .ext-deps \
         libwebp-dev \
         libpng-dev \
         libxml2-dev \
-        freetype-dev \
         freetype \
+        freetype-dev \
         libmcrypt \
         autoconf
 
@@ -40,7 +40,7 @@ RUN docker-php-ext-configure tokenizer
 RUN docker-php-ext-configure zip
 RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
-RUN docker-php-ext-configure mysqli
+# RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
@@ -57,6 +57,7 @@ RUN \
 	docker-php-ext-enable mongodb.so
 
 # Install PHP extention
+RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install opcache
@@ -70,8 +71,7 @@ RUN docker-php-ext-install tokenizer
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install shmop
 RUN docker-php-ext-install xmlrpc
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install gd
+# RUN docker-php-ext-install mysqli
 
 # Delete PHP Source
 RUN docker-php-source delete
