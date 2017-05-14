@@ -79,6 +79,10 @@ RUN docker-php-source delete
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
+# Install phpunit, the tool that we will use for testing
+curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
+chmod +x /usr/local/bin/phpunit
+
 # Install APIDoc
 RUN npm install apidoc -g
 
