@@ -93,7 +93,6 @@ RUN npm install grunt-apidoc --save-dev
 # Copy php.ini
 COPY php.ini /usr/local/etc/php
 
-
 # Work Directory
 WORKDIR /var/www/html
 
