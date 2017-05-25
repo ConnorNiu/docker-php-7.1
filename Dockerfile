@@ -93,6 +93,9 @@ RUN npm install grunt-apidoc --save-dev
 # Copy php.ini
 COPY php.ini /usr/local/etc/php
 
+# Copy supervisor
+COPY supervisor.conf /etc/supervisor
+
 # Work Directory
 WORKDIR /var/www/html
 
@@ -100,4 +103,4 @@ WORKDIR /var/www/html
 EXPOSE 9000
 
 # Entry point
-CMD ["php-fpm"]
+CMD ["'supervisord -c /etc/supervisor/supervisor.conf' & php-fpm"]
