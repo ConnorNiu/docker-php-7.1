@@ -99,11 +99,11 @@ COPY supervisor.conf /etc/supervisor
 # Work Directory
 WORKDIR /var/www/html
 
-COPY start.sh /usr/local/bin/
-ENTRYPOINT ["start.sh"]
+#COPY start.sh /usr/local/bin/
+#ENTRYPOINT ["start.sh"]
 
 # Expose ports
 EXPOSE 9000
 
 # Entry point
-CMD ["php-fpm"]
+CMD ["start.sh && php-fpm"]
