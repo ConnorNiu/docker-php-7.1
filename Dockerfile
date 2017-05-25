@@ -99,7 +99,7 @@ COPY supervisor.conf /etc/supervisor
 # Work Directory
 WORKDIR /var/www/html
 
-#COPY start.sh /usr/local/bin/
+COPY start.sh /usr/local/bin/
 #ENTRYPOINT ["start.sh"]
 
 # Expose ports
