@@ -98,7 +98,9 @@ COPY php.ini /usr/local/etc/php
 WORKDIR /var/www/html
 
 # supervisor
-COPY supervisor /etc/supervisor
+RUN mkdir -p /etc/supervisor/conf.d
+COPY supervisor/supervisor.conf /etc/supervisor
+COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
 COPY start.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/start.sh
 ENTRYPOINT ["/usr/local/bin/start.sh"]
