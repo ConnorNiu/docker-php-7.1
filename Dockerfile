@@ -85,10 +85,10 @@ RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpu
 RUN chmod +x /usr/local/bin/phpunit
 
 # Install APIDoc
-RUN npm install apidoc -g
+RUN npm install apidoc -g --registry=https://registry.npm.taobao.org
 
 # Install APIDoc for Grunt
-RUN npm install grunt-apidoc --save-dev
+RUN npm install grunt-apidoc --save-dev --registry=https://registry.npm.taobao.org
 
 # Copy php.ini
 COPY php.ini /usr/local/etc/php
