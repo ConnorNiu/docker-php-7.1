@@ -103,4 +103,4 @@ WORKDIR /var/www/html
 EXPOSE 9000
 
 # Entry point
-CMD ["'supervisord -c /etc/supervisor/supervisor.conf' && php-fpm"]
+CMD ["supervisord -c /etc/supervisor/supervisor.conf && php-fpm"]
