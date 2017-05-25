@@ -106,4 +106,4 @@ COPY start.sh /usr/local/bin/
 EXPOSE 9000
 
 # Entry point
-CMD ["start.sh && php-fpm"]
+CMD ["php-fpm"]
