@@ -78,17 +78,17 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-source delete
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Install phpunit, the tool that we will use for testing
-RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
-RUN chmod +x /usr/local/bin/phpunit
+#RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
+#RUN chmod +x /usr/local/bin/phpunit
 
 # Install APIDoc
-RUN npm install apidoc -g --registry=https://registry.npm.taobao.org
+#RUN npm install apidoc -g --registry=https://registry.npm.taobao.org
 
 # Install APIDoc for Grunt
-RUN npm install grunt-apidoc --save-dev --registry=https://registry.npm.taobao.org
+#RUN npm install grunt-apidoc --save-dev --registry=https://registry.npm.taobao.org
 
 # Copy php.ini
 COPY php.ini /usr/local/etc/php
