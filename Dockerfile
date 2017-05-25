@@ -25,7 +25,8 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype \
         freetype-dev \
         libmcrypt \
-        autoconf
+        autoconf \
+        supervisor
 
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
