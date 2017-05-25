@@ -103,7 +103,7 @@ WORKDIR /var/www/html
 
 COPY start.sh /usr/local/bin
 
-ENTRYPOINT ["/usr/local/bin/start.sh"]
+#ENTRYPOINT ["/usr/local/bin/start.sh"]
 
 # Expose ports
 EXPOSE 9000
