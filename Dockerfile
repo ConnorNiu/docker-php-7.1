@@ -93,14 +93,15 @@ RUN npm install grunt-apidoc --save-dev --registry=https://registry.npm.taobao.o
 # Copy php.ini
 COPY php.ini /usr/local/etc/php
 
-# Copy supervisor
-RUN mkdir -p /etc/supervisor
 
-COPY supervisor.conf /etc/supervisor
+
+
 
 # Work Directory
 WORKDIR /var/www/html
 
+# supervisor
+COPY supervisor /etc/supervisor
 COPY start.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/start.sh
 ENTRYPOINT ["/usr/local/bin/start.sh"]
