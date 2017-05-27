@@ -85,7 +85,10 @@ RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpu
 RUN chmod +x /usr/local/bin/phpunit
 
 # Install APIDoc
-RUN npm install apidoc -g
+RUN npm install -g apidoc
+
+# Install Grunt
+RUN npm install -g grunt-cli
 
 # Install APIDoc for Grunt
 RUN npm install grunt-apidoc --save-dev
