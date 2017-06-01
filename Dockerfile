@@ -26,7 +26,14 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype-dev \
         libmcrypt \
         autoconf \
-        supervisor
+        supervisor \
+        g++ \
+        make \
+        unixodbc-dev \
+        freetds \
+        unixodbc
+
+RUN docker-php-source extract
 
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
@@ -76,22 +83,26 @@ RUN docker-php-ext-install mysqli
 
 
 # Install ODBC
-#RUN apk update \
-#    && apk add --no-cache --virtual .php-build-dependencies \
-#        g++ \
-#        make \
-#        unixodbc-dev \
-#    && apk add --virtual .php-runtime-dependencies \
-#        freetds \
-#        unixodbc \
-#    && docker-php-source extract \
-#    && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
-#    && docker-php-ext-install do_odbc \
-#    && docker-php-source delete \
-#    && apk del .php-build-dependencies \
-#    && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
-#
-#COPY odbc/*.ini /etc/
+RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr
+RUN docker-php-ext-install do_odbc
+COPY odbc/*.ini /etc/
+
+RUN ln -s /usr/include /usr/local/incl
+
+
+RUN set -ex; \
+	docker-php-source extract; \
+	{ \
+		echo '# https://github.com/docker-library/php/issues/103#issuecomment-271413933'; \
+		echo 'AC_DEFUN([PHP_ALWAYS_SHARED],[])dnl'; \
+		echo; \
+		cat /usr/src/php/ext/odbc/config.m4; \
+	} > temp.m4; \
+	mv temp.m4 /usr/src/php/ext/odbc/config.m4; \
+	apk add --no-cache unixodbc-dev; \
+	docker-php-ext-configure odbc --with-unixODBC=shared,/usr; \
+	docker-php-ext-install odbc; \
+	docker-php-source delete
 
 
 
