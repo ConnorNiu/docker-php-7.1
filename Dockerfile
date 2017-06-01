@@ -94,9 +94,6 @@ RUN apk update \
 
 COPY odbc/*.ini /etc/
 
-RUN docker-php-ext-configure odbc
-RUN docker-php-ext-install odbc
-
 
 
 
