@@ -26,6 +26,7 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype-dev \
         libmcrypt \
         autoconf \
+        unixodbc-dev \
         supervisor
 
 RUN docker-php-ext-configure pdo
@@ -42,7 +43,7 @@ RUN docker-php-ext-configure zip
 RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
 RUN docker-php-ext-configure mysqli
-RUN docker-php-ext-configure odbc
+RUN docker-php-ext-configure odbc --with-unixODBC
 RUN docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
