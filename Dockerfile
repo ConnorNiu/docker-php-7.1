@@ -92,6 +92,7 @@ RUN apk update \
     && apk del .php-build-dependencies \
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
+COPY odbc/*.ini /etc/
 
 # Delete PHP Source
 RUN docker-php-source delete
