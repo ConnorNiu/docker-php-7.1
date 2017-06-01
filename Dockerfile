@@ -26,7 +26,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype-dev \
         libmcrypt \
         autoconf \
-        unixodbc-dev \
         supervisor
 
 RUN docker-php-ext-configure pdo
@@ -43,8 +42,6 @@ RUN docker-php-ext-configure zip
 RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
 RUN docker-php-ext-configure mysqli
-RUN docker-php-ext-configure pdo_odbc
-RUN docker-php-ext-configure odbc --with-unixODBC
 RUN docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
@@ -76,8 +73,26 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-install shmop
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install pdo_odbc
-RUN docker-php-ext-install odbc
+
+
+# Install ODBC
+RUN apk update \
+    && apk add --no-cache --virtual .php-build-dependencies \
+        autoconf \
+        g++ \
+        make \
+        unixodbc-dev \
+    && apk add --virtual .php-runtime-dependencies \
+        freetds \
+        unixodbc \
+    && docker-php-source extract \
+    && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
+    && docker-php-ext-install \
+        pdo_odbc \
+    && docker-php-source delete \
+    && apk del .php-build-dependencies \
+    && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
+
 
 # Delete PHP Source
 RUN docker-php-source delete
