@@ -84,7 +84,7 @@ RUN docker-php-ext-install mysqli
 
 # Install ODBC
 RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr
-RUN docker-php-ext-install do_odbc
+RUN docker-php-ext-install pdo_odbc
 COPY odbc/*.ini /etc/
 
 RUN ln -s /usr/include /usr/local/incl
