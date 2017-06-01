@@ -86,14 +86,12 @@ RUN apk update \
         unixodbc \
     && docker-php-source extract \
     && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
-    && docker-php-ext-install \
-        pdo_odbc \
+    && docker-php-ext-install do_odbc \
     && docker-php-source delete \
     && apk del .php-build-dependencies \
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 COPY odbc/*.ini /etc/
-
 
 
 
