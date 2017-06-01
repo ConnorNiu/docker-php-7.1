@@ -78,7 +78,6 @@ RUN docker-php-ext-install mysqli
 # Install ODBC
 RUN apk update \
     && apk add --no-cache --virtual .php-build-dependencies \
-        autoconf \
         g++ \
         make \
         unixodbc-dev \
