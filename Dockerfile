@@ -18,7 +18,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         curl \
         git \
         nodejs \
-        openssl-dev \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
@@ -37,7 +36,6 @@ RUN apk add --no-cache --virtual .ext-deps \
 
 RUN docker-php-source extract
 
-# Install PHP extention
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
 RUN docker-php-ext-configure pdo_dblib
@@ -53,8 +51,23 @@ RUN docker-php-ext-configure zip
 RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
 RUN docker-php-ext-configure mysqli
-RUN docker-php-ext-configure gd --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
+RUN docker-php-ext-configure gd \
+    --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
+# Install and Enable Redis Xdebug Mongodb
+RUN \
+    apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
+    pecl install redis && \
+    pecl install xdebug && \
+    pecl install mongodb && \
+    pecl clear-cache && \
+    apk del .mongodb-ext-build-deps && \
+	docker-php-ext-enable redis.so && \
+	docker-php-ext-enable xdebug.so && \
+	docker-php-ext-enable mongodb.so
+
+# Install PHP extention
+RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pdo_dblib
@@ -70,23 +83,6 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-install shmop
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install gd
-
-
-# Install and Enable Redis
-RUN pecl install redis
-RUN	docker-php-ext-enable redis.so
-
-
-# Install and Enable Xdebug
-RUN pecl install xdebug
-RUN docker-php-ext-enable xdebug.so
-
-# Install and Enable Mongodb
-RUN pecl install mongodb
-RUN docker-php-ext-enable mongodb.so
-
-RUN pecl clear-cache
 
 
 
@@ -107,6 +103,7 @@ RUN set -ex; \
 	mv temp.m4 /usr/src/php/ext/odbc/config.m4; \
 	docker-php-ext-configure odbc --with-unixODBC=shared,/usr; \
 	docker-php-ext-install odbc
+
 
 
 # Delete PHP Source
@@ -139,12 +136,10 @@ RUN mkdir -p /etc/supervisor/conf.d
 COPY supervisor/supervisor.conf /etc/supervisor
 COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
 
-
-#RUN apk del .ext-deps
-
 # Expose ports
 EXPOSE 9000
 
 # Entry point
 CMD ["php-fpm"]
+
 #CMD ["supervisord -c /etc/supervisor/supervisor.conf"]
