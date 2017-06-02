@@ -55,7 +55,7 @@ RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-configure gd --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
 RUN docker-php-ext-install pdo
-RUN docker-php-ext-install pdopdo
+RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pdo_dblib
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install exif
