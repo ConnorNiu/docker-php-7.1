@@ -35,7 +35,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetds-dev
 
 RUN docker-php-source extract
-
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
 RUN docker-php-ext-configure pdo_dblib
