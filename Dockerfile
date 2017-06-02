@@ -18,6 +18,7 @@ RUN apk add --no-cache --virtual .ext-deps \
         curl \
         git \
         nodejs \
+        openssl-dev \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
@@ -29,10 +30,10 @@ RUN apk add --no-cache --virtual .ext-deps \
         supervisor \
         g++ \
         make \
+        unixodbc \
         unixodbc-dev \
         freetds \
-        freetds-dev \
-        unixodbc
+        freetds-dev
 
 RUN docker-php-source extract
 
@@ -72,17 +73,21 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install gd
 
 
-# Install and Enable Redis Xdebug Mongodb
-RUN \
-    apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
-    pecl install redis && \
-    pecl install xdebug && \
-    pecl install mongodb && \
-    pecl clear-cache && \
-    apk del .mongodb-ext-build-deps && \
-	docker-php-ext-enable redis.so && \
-	docker-php-ext-enable xdebug.so && \
-	docker-php-ext-enable mongodb.so
+# Install and Enable Redis
+RUN pecl install redis
+RUN	docker-php-ext-enable redis.so
+
+
+# Install and Enable Xdebug
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug.so
+
+# Install and Enable Mongodb
+RUN pecl install mongodb
+RUN docker-php-ext-enable mongodb.so
+
+RUN pecl clear-cache
+
 
 
 # Install ODBC
@@ -93,7 +98,6 @@ COPY odbc/*.ini /etc/
 RUN ln -s /usr/include /usr/local/incl
 
 RUN set -ex; \
-	docker-php-source extract; \
 	{ \
 		echo '# https://github.com/docker-library/php/issues/103#issuecomment-271413933'; \
 		echo 'AC_DEFUN([PHP_ALWAYS_SHARED],[])dnl'; \
@@ -101,10 +105,8 @@ RUN set -ex; \
 		cat /usr/src/php/ext/odbc/config.m4; \
 	} > temp.m4; \
 	mv temp.m4 /usr/src/php/ext/odbc/config.m4; \
-	apk add --no-cache unixodbc-dev; \
 	docker-php-ext-configure odbc --with-unixODBC=shared,/usr; \
-	docker-php-ext-install odbc; \
-	docker-php-source delete
+	docker-php-ext-install odbc
 
 
 # Delete PHP Source
@@ -136,6 +138,9 @@ WORKDIR /var/www/html
 RUN mkdir -p /etc/supervisor/conf.d
 COPY supervisor/supervisor.conf /etc/supervisor
 COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
+
+
+#RUN apk del .ext-deps
 
 # Expose ports
 EXPOSE 9000
