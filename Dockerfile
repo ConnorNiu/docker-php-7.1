@@ -131,12 +131,7 @@ COPY php.ini /usr/local/etc/php
 WORKDIR /var/www/html
 
 # supervisor
-RUN mkdir -p /etc/supervisor/conf.d
-COPY supervisor/supervisor.conf /etc/supervisor
-COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
-
-# Test
-ADD supervisor /etc/supervisor2
+ADD supervisor /etc/supervisor
 
 # Start Supervisord
 ADD start.sh /start.sh
