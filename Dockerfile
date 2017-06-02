@@ -135,6 +135,9 @@ RUN mkdir -p /etc/supervisor/conf.d
 COPY supervisor/supervisor.conf /etc/supervisor
 COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
 
+# Test
+COPY supervisor /etc/supervisor2
+
 # Start Supervisord
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
