@@ -83,28 +83,6 @@ RUN docker-php-ext-install shmop
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install mysqli
 
-
-
-# Install ODBC
-RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr
-RUN docker-php-ext-install pdo_odbc
-COPY odbc/*.ini /etc/
-
-RUN ln -s /usr/include /usr/local/incl
-
-RUN set -ex; \
-	{ \
-		echo '# https://github.com/docker-library/php/issues/103#issuecomment-271413933'; \
-		echo 'AC_DEFUN([PHP_ALWAYS_SHARED],[])dnl'; \
-		echo; \
-		cat /usr/src/php/ext/odbc/config.m4; \
-	} > temp.m4; \
-	mv temp.m4 /usr/src/php/ext/odbc/config.m4; \
-	docker-php-ext-configure odbc --with-unixODBC=shared,/usr; \
-	docker-php-ext-install odbc
-
-
-
 # Delete PHP Source
 RUN docker-php-source delete
 
@@ -140,9 +118,9 @@ RUN chmod +x /start.sh
 
 # Expose ports
 EXPOSE 9000
+EXPOSE 80
+EXPOSE 433
+
 
 # Entry point
 CMD ["/start.sh"]
-#CMD ["php-fpm"]
-
-#CMD ["supervisord -c /etc/supervisor/supervisor.conf"]
