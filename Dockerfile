@@ -37,17 +37,39 @@ RUN apk add --no-cache --virtual .ext-deps \
 RUN docker-php-source extract
 
 # Install PHP extention
-RUN docker-php-ext-configure \
-    pdo pdo_mysql pdo_dblib opcache exif sockets soap \
-    bcmath pcntl sysvsem tokenizer zip shmop xmlrpc mysqli \
-    gd --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
+RUN docker-php-ext-configure pdo
+RUN docker-php-ext-configure pdo_mysql
+RUN docker-php-ext-configure pdo_dblib
+RUN docker-php-ext-configure opcache
+RUN docker-php-ext-configure exif
+RUN docker-php-ext-configure sockets
+RUN docker-php-ext-configure soap
+RUN docker-php-ext-configure bcmath
+RUN docker-php-ext-configure pcntl
+RUN docker-php-ext-configure sysvsem
+RUN docker-php-ext-configure tokenizer
+RUN docker-php-ext-configure zip
+RUN docker-php-ext-configure shmop
+RUN docker-php-ext-configure xmlrpc
+RUN docker-php-ext-configure mysqli
+RUN docker-php-ext-configure gd --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
-RUN docker-php-ext-install \
-    pdo pdo_mysql pdo_dblib opcache exif sockets soap \
-    bcmath pcntl sysvsem tokenizer zip shmop xmlrpc mysqli \
-    gd
-
-
+RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdopdo
+RUN docker-php-ext-install pdo_dblib
+RUN docker-php-ext-install opcache
+RUN docker-php-ext-install exif
+RUN docker-php-ext-install sockets
+RUN docker-php-ext-install soap
+RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install pcntl
+RUN docker-php-ext-install sysvsem
+RUN docker-php-ext-install tokenizer
+RUN docker-php-ext-install zip
+RUN docker-php-ext-install shmop
+RUN docker-php-ext-install xmlrpc
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install gd
 
 
 # Install and Enable Redis Xdebug Mongodb
