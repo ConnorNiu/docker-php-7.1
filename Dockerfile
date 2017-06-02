@@ -139,6 +139,6 @@ COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
 EXPOSE 9000
 
 # Entry point
-CMD ["php-fpm"]
+#CMD ["php-fpm"]
 
-#CMD ["supervisord -c /etc/supervisor/supervisor.conf"]
+CMD ["supervisord -c /etc/supervisor/supervisor.conf"]
