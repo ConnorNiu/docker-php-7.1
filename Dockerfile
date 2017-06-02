@@ -86,22 +86,22 @@ RUN docker-php-ext-install mysqli
 
 
 # Install ODBC
-RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr
-RUN docker-php-ext-install pdo_odbc
-COPY odbc/*.ini /etc/
-
-RUN ln -s /usr/include /usr/local/incl
-
-RUN set -ex; \
-	{ \
-		echo '# https://github.com/docker-library/php/issues/103#issuecomment-271413933'; \
-		echo 'AC_DEFUN([PHP_ALWAYS_SHARED],[])dnl'; \
-		echo; \
-		cat /usr/src/php/ext/odbc/config.m4; \
-	} > temp.m4; \
-	mv temp.m4 /usr/src/php/ext/odbc/config.m4; \
-	docker-php-ext-configure odbc --with-unixODBC=shared,/usr; \
-	docker-php-ext-install odbc
+#RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr
+#RUN docker-php-ext-install pdo_odbc
+#COPY odbc/*.ini /etc/
+#
+#RUN ln -s /usr/include /usr/local/incl
+#
+#RUN set -ex; \
+#	{ \
+#		echo '# https://github.com/docker-library/php/issues/103#issuecomment-271413933'; \
+#		echo 'AC_DEFUN([PHP_ALWAYS_SHARED],[])dnl'; \
+#		echo; \
+#		cat /usr/src/php/ext/odbc/config.m4; \
+#	} > temp.m4; \
+#	mv temp.m4 /usr/src/php/ext/odbc/config.m4; \
+#	docker-php-ext-configure odbc --with-unixODBC=shared,/usr; \
+#	docker-php-ext-install odbc
 
 
 
@@ -109,20 +109,20 @@ RUN set -ex; \
 RUN docker-php-source delete
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Install phpunit, the tool that we will use for testing
-RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
-RUN chmod +x /usr/local/bin/phpunit
+#RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
+#RUN chmod +x /usr/local/bin/phpunit
 
 # Install APIDoc
-RUN npm install -g apidoc
+#RUN npm install -g apidoc
 
 # Install Grunt
-RUN npm install -g grunt-cli
+#RUN npm install -g grunt-cli
 
 # Install APIDoc for Grunt
-RUN npm install grunt-apidoc --save-dev
+#RUN npm install grunt-apidoc --save-dev
 
 # Copy php.ini
 COPY php.ini /usr/local/etc/php
@@ -136,7 +136,7 @@ COPY supervisor/supervisor.conf /etc/supervisor
 COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
 
 # Test
-COPY supervisor /etc/supervisor2
+ADD supervisor /etc/supervisor2
 
 # Start Supervisord
 ADD start.sh /start.sh
