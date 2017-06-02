@@ -135,10 +135,16 @@ RUN mkdir -p /etc/supervisor/conf.d
 COPY supervisor/supervisor.conf /etc/supervisor
 COPY supervisor/conf.d/laravel-worker.conf /etc/supervisor/conf.d
 
+# Start Supervisord
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
+
+
 # Expose ports
 EXPOSE 9000
 
 # Entry point
-CMD ["php-fpm"]
+CMD ["/start.sh"]
+#CMD ["php-fpm"]
 
 #CMD ["supervisord -c /etc/supervisor/supervisor.conf"]
