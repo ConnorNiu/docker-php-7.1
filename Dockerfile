@@ -38,12 +38,12 @@ RUN docker-php-source extract
 
 # Install PHP extention
 RUN docker-php-ext-configure \
-    pdo pdo_mysql pdo_dblib pdo_pgsql opcache exif sockets soap \
+    pdo pdo_mysql pdo_dblib opcache exif sockets soap \
     bcmath pcntl sysvsem tokenizer zip shmop xmlrpc mysqli \
     gd --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
 RUN docker-php-ext-install \
-    pdo pdo_mysql pdo_dblib pdo_pgsql opcache exif sockets soap \
+    pdo pdo_mysql pdo_dblib opcache exif sockets soap \
     bcmath pcntl sysvsem tokenizer zip shmop xmlrpc mysqli \
     gd
 
