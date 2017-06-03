@@ -29,8 +29,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         supervisor \
         g++ \
         make \
-        unixodbc \
-        unixodbc-dev \
         freetds \
         freetds-dev
 
