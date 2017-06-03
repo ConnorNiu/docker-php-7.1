@@ -108,19 +108,17 @@ COPY php.ini /usr/local/etc/php
 # Work Directory
 WORKDIR /var/www/html
 
-# supervisor
-ADD supervisor /etc/supervisor
+# Configure supervisord
+COPY supervisor/supervisord.conf /etc/supervisord.conf
 
 # Start Supervisord
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
 
-
 # Expose ports
 EXPOSE 9000
 EXPOSE 80
 EXPOSE 433
-
 
 # Entry point
 CMD ["/start.sh"]
