@@ -115,8 +115,6 @@ RUN chmod +x /start.sh
 
 # Expose ports
 EXPOSE 9000
-EXPOSE 80
-EXPOSE 433
 
 # Entry point
 CMD ["/start.sh"]
