@@ -114,7 +114,7 @@ ADD start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Expose ports
-EXPOSE 9000
+EXPOSE 9000 9001
 
 # Entry point
 CMD ["/start.sh"]
