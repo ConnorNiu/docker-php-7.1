@@ -117,4 +117,5 @@ RUN chmod +x /start.sh
 EXPOSE 9000 9001
 
 # Entry point
-CMD ["/start.sh"]
+CMD ["supervisord -c /etc/supervisord.conf"]
+#CMD ["/start.sh"]
