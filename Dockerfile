@@ -99,10 +99,10 @@ RUN chmod +x /usr/local/bin/phpunit
 RUN npm install -g apidoc
 
 # Install Grunt
-RUN npm install -g grunt-cli
+#RUN npm install -g grunt-cli
 
 # Install APIDoc for Grunt
-RUN npm install grunt-apidoc --save-dev
+#RUN npm install grunt-apidoc --save-dev
 
 # Copy php.ini
 #COPY php.ini /usr/local/etc/php
