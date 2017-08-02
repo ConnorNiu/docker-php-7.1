@@ -31,8 +31,8 @@ RUN apk add --no-cache --virtual .ext-deps \
         make \
 #        freetds \
         freetds-dev \
-#        libxslt \
         libxslt-dev
+#        libxslt \
 
 RUN docker-php-source extract
 RUN docker-php-ext-configure pdo
