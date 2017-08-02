@@ -1,5 +1,5 @@
 # Use Alpine Linux
-FROM php:7.1.7-fpm-alpine
+FROM php:5.6.30-fpm-alpine
 
 # Maintainer
 MAINTAINER Connor <connor.niu@gmail.com>
