@@ -31,7 +31,8 @@ RUN apk add --no-cache --virtual .ext-deps \
         make \
         freetds \
         freetds-dev \
-        libxslt
+        libxslt \
+        libxslt-dev
 
 RUN docker-php-source extract
 RUN docker-php-ext-configure pdo
@@ -46,6 +47,7 @@ RUN docker-php-ext-configure pcntl
 RUN docker-php-ext-configure sysvsem
 RUN docker-php-ext-configure tokenizer
 RUN docker-php-ext-configure zip
+RUN docker-php-ext-configure xsl
 RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
 RUN docker-php-ext-configure mysqli
@@ -78,6 +80,7 @@ RUN docker-php-ext-install pcntl
 RUN docker-php-ext-install sysvsem
 RUN docker-php-ext-install tokenizer
 RUN docker-php-ext-install zip
+RUN docker-php-ext-install xsl
 RUN docker-php-ext-install shmop
 RUN docker-php-ext-install xmlrpc
 RUN docker-php-ext-install mysqli
