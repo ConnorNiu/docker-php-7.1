@@ -22,16 +22,16 @@ RUN apk add --no-cache --virtual .ext-deps \
         libwebp-dev \
         libpng-dev \
         libxml2-dev \
-        freetype \
+#        freetype \
         freetype-dev \
         libmcrypt \
         autoconf \
         supervisor \
         g++ \
         make \
-        freetds \
+#        freetds \
         freetds-dev \
-        libxslt \
+#        libxslt \
         libxslt-dev
 
 RUN docker-php-source extract
