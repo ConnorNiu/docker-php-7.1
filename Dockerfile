@@ -1,5 +1,5 @@
 # Use Alpine Linux
-FROM php:7.1.6-fpm-alpine
+FROM php:7.1.7-fpm-alpine
 
 # Maintainer
 MAINTAINER Connor <connor.niu@gmail.com>
@@ -66,7 +66,7 @@ RUN \
 	docker-php-ext-enable xdebug.so && \
 	docker-php-ext-enable mongodb.so
 
-# Install PHP extention
+# Install PHP Extension
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
@@ -118,8 +118,7 @@ ADD start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Expose ports
-EXPOSE 9000 9001
+EXPOSE 9000
 
 # Entry point
-#CMD ["supervisord"]
 CMD ["/start.sh"]
