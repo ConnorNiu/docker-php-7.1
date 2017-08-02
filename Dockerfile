@@ -111,7 +111,7 @@ RUN npm install -g apidoc
 WORKDIR /var/www/html
 
 # Configure supervisord
-COPY supervisor/supervisord.conf /etc/supervisord.conf
+COPY etc/supervisord.conf /etc/supervisord.conf
 
 # Expose ports
 EXPOSE 9000
