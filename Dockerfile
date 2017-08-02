@@ -113,7 +113,6 @@ WORKDIR /var/www/html
 # Configure supervisord
 COPY supervisor/supervisord.conf /etc/supervisord.conf
 
-
 # Expose ports
 EXPOSE 9000
 
