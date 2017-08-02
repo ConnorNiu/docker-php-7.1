@@ -113,12 +113,8 @@ WORKDIR /var/www/html
 # Configure supervisord
 COPY supervisor/supervisord.conf /etc/supervisord.conf
 
-# Start Supervisord
-ADD start.sh /start.sh
-RUN chmod +x /start.sh
-
 # Expose ports
 EXPOSE 9000
 
 # Entry point
-CMD ["/start.sh"]
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]
