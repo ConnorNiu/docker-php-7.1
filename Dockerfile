@@ -15,6 +15,7 @@ RUN \
 # Install Software
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
+        openssh \
         curl \
         git \
         nodejs \
