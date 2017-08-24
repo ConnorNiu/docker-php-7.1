@@ -1,5 +1,5 @@
 # Use Alpine Linux
-FROM php:7.1.7-fpm-alpine
+FROM php:7.1.8-fpm-alpine
 
 # Maintainer
 MAINTAINER Connor <connor.niu@gmail.com>
@@ -15,6 +15,7 @@ RUN \
 # Install Software
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
+        openssh \
         curl \
         git \
         nodejs \
