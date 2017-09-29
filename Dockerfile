@@ -1,9 +1,6 @@
 # Use Alpine Linux
 FROM php:7.1.10-fpm-alpine
 
-# Maintainer
-MAINTAINER Connor <connor.niu@gmail.com>
-
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
 RUN \
