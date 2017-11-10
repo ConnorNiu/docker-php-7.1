@@ -1,5 +1,5 @@
 # Use Alpine Linux
-FROM php:7.1.10-fpm-alpine
+FROM php:7.1.11-fpm-alpine
 
 
 # Set Timezone Environments
