@@ -18,22 +18,18 @@ RUN apk add --no-cache --virtual .ext-deps \
         openssh \
         curl \
         git \
-        nodejs \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
         libxml2-dev \
-#        freetype \
         freetype-dev \
         libmcrypt \
         autoconf \
         supervisor \
         g++ \
         make \
-#        freetds \
         freetds-dev \
         libxslt-dev
-#        libxslt \
 
 RUN docker-php-source extract
 RUN docker-php-ext-configure pdo
@@ -96,26 +92,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
 RUN chmod +x /usr/local/bin/phpunit
 
-# Install APIDoc
-RUN npm install -g apidoc
 
-# Install Grunt
-#RUN npm install -g grunt-cli
-
-# Install APIDoc for Grunt
-#RUN npm install grunt-apidoc --save-dev
-
-# Copy php.ini
-#COPY php.ini /usr/local/etc/php
-
-# Work Directory
-WORKDIR /var/www/html
-
-# Configure supervisord
-COPY etc/supervisord.conf /etc/supervisord.conf
 
 # Expose ports
 EXPOSE 9000
 
-# Entry point
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["php-fpm"]
