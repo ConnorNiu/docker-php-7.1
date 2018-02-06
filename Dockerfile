@@ -1,7 +1,6 @@
 # Use Alpine Linux
 FROM php:7.2.1-fpm-alpine
 
-
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
 RUN \
@@ -16,7 +15,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         openssh \
         curl \
         git \
-        nodejs \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
@@ -24,7 +22,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype-dev \
         libmcrypt \
         autoconf \
-        supervisor \
         g++ \
         make \
         freetds-dev \
@@ -91,18 +88,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
 RUN chmod +x /usr/local/bin/phpunit
 
-
-# Copy php.ini
-#COPY php.ini /usr/local/etc/php
-
-# Work Directory
-WORKDIR /var/www/html
-
-# Configure supervisord
-COPY etc/supervisord.conf /etc/supervisord.conf
-
 # Expose ports
 EXPOSE 9000
 
 # Entry point
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["php-fpm"]
