@@ -1,7 +1,6 @@
 # Use Alpine Linux
 FROM php:5.6.30-fpm-alpine
 
-
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
 RUN \
@@ -52,12 +51,10 @@ RUN docker-php-ext-configure gd \
 RUN \
     apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
     pecl install redis && \
-    pecl install xdebug && \
     pecl install mongodb && \
     pecl clear-cache && \
     apk del .mongodb-ext-build-deps && \
 	docker-php-ext-enable redis.so && \
-	docker-php-ext-enable xdebug.so && \
 	docker-php-ext-enable mongodb.so
 
 # Install PHP Extension
