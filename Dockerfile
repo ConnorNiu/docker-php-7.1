@@ -1,8 +1,6 @@
 # Use Alpine Linux
 FROM php:5.6.30-fpm-alpine
 
-# Maintainer
-MAINTAINER Connor <connor.niu@gmail.com>
 
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
@@ -25,7 +23,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         freetype-dev \
         libmcrypt \
         autoconf \
-        supervisor \
         g++ \
         make \
         freetds-dev \
@@ -92,9 +89,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
 RUN chmod +x /usr/local/bin/phpunit
 
-
-
 # Expose ports
 EXPOSE 9000
 
+# Entry point
 CMD ["php-fpm"]
