@@ -14,7 +14,6 @@ RUN apk add --no-cache --virtual .ext-deps \
         bash \
         openssh \
         curl \
-        git \
         libjpeg-turbo-dev \
         libwebp-dev \
         libpng-dev \
