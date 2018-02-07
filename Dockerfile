@@ -32,7 +32,6 @@ RUN docker-php-source extract
 # Install PHP Core Extensions
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
-RUN docker-php-ext-configure pdo_dblib
 RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-configure opcache
 RUN docker-php-ext-configure exif
@@ -70,7 +69,6 @@ RUN \
 # Install PHP Extension
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install pdo_dblib
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install exif
