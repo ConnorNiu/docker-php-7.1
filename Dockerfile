@@ -56,11 +56,13 @@ RUN \
     pecl install redis && \
     pecl install xdebug && \
     pecl install mongodb && \
+    pecl install memcached && \
     pecl clear-cache && \
     apk del .mongodb-ext-build-deps && \
-	docker-php-ext-enable redis.so && \
-	docker-php-ext-enable xdebug.so && \
-	docker-php-ext-enable mongodb.so
+	docker-php-ext-enable redis && \
+	docker-php-ext-enable xdebug && \
+	docker-php-ext-enable mongodb && \
+	docker-php-ext-enable memcached
 
 # Install PHP Extension
 RUN docker-php-ext-install gd
