@@ -71,7 +71,7 @@ RUN \
 	docker-php-ext-enable xdebug && \
 	docker-php-ext-enable mongodb
 
-
+# Install PHP Extension
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install pdo_dblib
