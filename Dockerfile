@@ -10,7 +10,7 @@ RUN \
 	apk del tzdata
 
 # Install Software
-RUN apk add --no-cache --virtual .ext-deps \
+RUN apk add --no-cache --virtual .build-deps \
         bash \
         openssh \
         curl \
@@ -109,7 +109,7 @@ RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
 RUN apk del .build-deps
-RUN apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
+#RUN apk del g++ make autoconf
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
