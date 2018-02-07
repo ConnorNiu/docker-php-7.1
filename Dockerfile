@@ -88,8 +88,8 @@ RUN docker-php-ext-install gd
 RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
-RUN apk del .build-deps
-RUN apk del g++ make autoconf
+#RUN apk del .build-deps
+#RUN apk del g++ make autoconf
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
