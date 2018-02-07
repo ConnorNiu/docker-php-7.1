@@ -1,5 +1,5 @@
 # Use Alpine Linux
-FROM php:7.2.1-fpm-alpine
+FROM php:7.2.2-fpm-alpine
 
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
@@ -45,7 +45,10 @@ RUN docker-php-ext-configure shmop
 RUN docker-php-ext-configure xmlrpc
 RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-configure gd \
-    --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
+    --with-jpeg-dir=/usr/include \
+    --with-png-dir=/usr/include \
+    --with-webp-dir=/usr/include \
+    --with-freetype-dir=/usr/include
 
 # Install and Enable Redis Xdebug Mongodb
 RUN \
