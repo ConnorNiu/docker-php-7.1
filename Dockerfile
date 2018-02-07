@@ -47,7 +47,7 @@ RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-configure gd \
     --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
 
-# Install and Enable Redis Xdebug Mongodb
+# Install and Enable Redis Mongodb
 RUN \
     apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
     pecl install redis && \
@@ -81,6 +81,7 @@ RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
 RUN apk del .build-deps
+RUN apk del .mongodb-ext-build-deps
 RUN apk del g++ make autoconf
 
 
