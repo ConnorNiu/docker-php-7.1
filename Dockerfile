@@ -9,6 +9,7 @@ RUN \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk del tzdata
 
+
 # Install Software
 RUN apk add --no-cache --virtual .ext-deps \
         bash \
