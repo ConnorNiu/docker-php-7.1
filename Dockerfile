@@ -108,6 +108,7 @@ RUN \
 RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
+RUN apk del .build-deps
 RUN apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
 
 # Install Composer
