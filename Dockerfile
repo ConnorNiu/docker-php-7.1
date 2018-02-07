@@ -30,7 +30,6 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN docker-php-source extract
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
-RUN docker-php-ext-configure pdo_dblib
 RUN docker-php-ext-configure opcache
 RUN docker-php-ext-configure exif
 RUN docker-php-ext-configure sockets
@@ -60,7 +59,6 @@ RUN \
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install pdo_dblib
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install sockets
