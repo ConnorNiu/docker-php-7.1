@@ -81,7 +81,6 @@ RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
 RUN apk del .build-deps
-RUN apk del .mongodb-ext-build-deps
 RUN apk del g++ make autoconf
 
 
