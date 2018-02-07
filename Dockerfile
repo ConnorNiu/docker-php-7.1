@@ -107,6 +107,9 @@ RUN \
 # Delete PHP Source
 RUN docker-php-source delete
 
+# Uninstall some dev to keep smaller
+RUN apk del gcc musl-dev linux-headers libffi-dev augeas-dev python-dev make autoconf
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
