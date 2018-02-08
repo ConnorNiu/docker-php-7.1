@@ -26,31 +26,32 @@ RUN apk add --no-cache --virtual .build-deps \
          libpng-dev \
          libxml2-dev \
          freetype-dev \
+         libmcrypt \
          freetds-dev
 
 # In order to keep the images smaller, PHP's source is kept in a compressed tar file. To facilitate linking of PHP's source with any extension, we also provide the helper script docker-php-source to easily extract the tar or delete the extracted source. Note: if you do use docker-php-source to extract the source, be sure to delete it in the same layer of the docker image.
 RUN docker-php-source extract
 
 # Install PHP Core Extensions
-RUN docker-php-ext-configure pdo
-RUN docker-php-ext-configure pdo_mysql
-RUN docker-php-ext-configure mysqli
-RUN docker-php-ext-configure opcache
-RUN docker-php-ext-configure exif
-RUN docker-php-ext-configure sockets
-RUN docker-php-ext-configure soap
-RUN docker-php-ext-configure bcmath
-RUN docker-php-ext-configure pcntl
-RUN docker-php-ext-configure sysvsem
-RUN docker-php-ext-configure tokenizer
-RUN docker-php-ext-configure zip
-RUN docker-php-ext-configure xsl
-RUN docker-php-ext-configure shmop
-RUN docker-php-ext-configure gd \
-    --with-jpeg-dir=/usr/include \
-    --with-png-dir=/usr/include \
-    --with-webp-dir=/usr/include \
-    --with-freetype-dir=/usr/include
+RUN docker-php-ext-configure pdo \
+                             pdo_mysql \
+                             mysqli \
+                             opcache \
+                             exif \
+                             sockets \
+                             soap \
+                             bcmath \
+                             pcntl \
+                             sysvsem \
+                             tokenizer \
+                             zip \
+                             xsl \
+                             shmop \
+                             gd \
+                               --with-jpeg-dir=/usr/include \
+                               --with-png-dir=/usr/include \
+                               --with-webp-dir=/usr/include \
+                               --with-freetype-dir=/usr/include
 
 
 # Install PECL extensions
@@ -67,21 +68,21 @@ RUN \
 	docker-php-ext-enable mongodb
 
 # Install PHP Extension
-RUN docker-php-ext-install pdo
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install opcache
-RUN docker-php-ext-install exif
-RUN docker-php-ext-install sockets
-RUN docker-php-ext-install soap
-RUN docker-php-ext-install bcmath
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-install sysvsem
-RUN docker-php-ext-install tokenizer
-RUN docker-php-ext-install zip
-RUN docker-php-ext-install xsl
-RUN docker-php-ext-install shmop
-RUN docker-php-ext-install gd
+RUN docker-php-ext-install pdo \
+                           pdo_mysql \
+                           mysqli \
+                           opcache \
+                           exif \
+                           sockets \
+                           soap \
+                           bcmath \
+                           pcntl \
+                           sysvsem \
+                           tokenizer \
+                           zip \
+                           xsl \
+                           shmop \
+                           gd
 
 
 # Delete PHP Source
