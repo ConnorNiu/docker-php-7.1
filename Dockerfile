@@ -79,15 +79,15 @@ RUN docker-php-ext-install pdo \
 
 
 # Output Log
-RUN  ln -sf /dev/stdout /usr/local/var/log/php-fpm.access.log \
-        && ln -sf /dev/stderr /usr/local/var/log/php-fpm.error.log
+RUN  ln -sf /dev/stdout /usr/local/var/log/php-fpm.access.log && \
+     ln -sf /dev/stderr /usr/local/var/log/php-fpm.error.log
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # Install phpunit, the tool that we will use for testing
-RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
-RUN chmod +x /usr/local/bin/phpunit
+RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar && \
+    chmod +x /usr/local/bin/phpunit
 
 # Delete PHP Source and Uninstall some dev to keep smaller
 RUN docker-php-source delete && \
