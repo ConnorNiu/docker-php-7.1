@@ -3,8 +3,7 @@ FROM php:7.2.2-fpm-alpine
 
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
-RUN \
-	apk add --update tzdata && \
+RUN apk add --update tzdata && \
 	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk del tzdata
@@ -16,6 +15,7 @@ RUN apk add --no-cache --virtual .build-deps \
          g++ \
          make \
          autoconf \
+         openssl-dev \
     && apk add --no-cache \
          bash \
          openssh \
@@ -33,36 +33,33 @@ RUN apk add --no-cache --virtual .build-deps \
 RUN docker-php-source extract
 
 # Install PHP Core Extensions
-RUN docker-php-ext-configure pdo \
-                             pdo_mysql \
-                             mysqli \
-                             opcache \
-                             exif \
-                             sockets \
-                             soap \
-                             bcmath \
-                             pcntl \
-                             sysvsem \
-                             tokenizer \
-                             zip \
-                             xsl \
-                             shmop \
-                             gd \
-                               --with-jpeg-dir=/usr/include \
-                               --with-png-dir=/usr/include \
-                               --with-webp-dir=/usr/include \
-                               --with-freetype-dir=/usr/include
+RUN docker-php-ext-configure pdo && \
+    docker-php-ext-configure pdo_mysql && \
+    docker-php-ext-configure mysqli && \
+    docker-php-ext-configure opcache && \
+    docker-php-ext-configure exif && \
+    docker-php-ext-configure sockets && \
+    docker-php-ext-configure soap && \
+    docker-php-ext-configure bcmath && \
+    docker-php-ext-configure pcntl && \
+    docker-php-ext-configure sysvsem && \
+    docker-php-ext-configure tokenizer && \
+    docker-php-ext-configure zip && \
+    docker-php-ext-configure xsl && \
+    docker-php-ext-configure shmop && \
+    docker-php-ext-configure gd \
+    docker-php-ext-configure   --with-jpeg-dir=/usr/include \
+    docker-php-ext-configure   --with-png-dir=/usr/include \
+    docker-php-ext-configure   --with-webp-dir=/usr/include \
+    docker-php-ext-configure   --with-freetype-dir=/usr/include
 
 
 # Install PECL extensions
 # Some extensions are not provided with the PHP source, but are instead available through PECL.
-RUN \
-    apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
-    pecl install redis && \
+RUN pecl install redis && \
     pecl install xdebug && \
     pecl install mongodb && \
     pecl clear-cache && \
-    apk del .mongodb-ext-build-deps && \
 	docker-php-ext-enable redis && \
 	docker-php-ext-enable xdebug && \
 	docker-php-ext-enable mongodb
