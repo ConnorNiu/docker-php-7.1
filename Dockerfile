@@ -9,25 +9,30 @@ RUN \
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk del tzdata
 
-
 # Install Software
-RUN apk add --no-cache --virtual .build-deps \
-        bash \
-        openssh \
-        curl \
-        libjpeg-turbo-dev \
-        libwebp-dev \
-        libpng-dev \
-        libxml2-dev \
-        freetype-dev \
-        libmcrypt \
-        autoconf \
-        g++ \
-        make \
-        freetds-dev \
-        libxslt-dev
 
+RUN apk add --no-cache --virtual .build-deps \
+         build-base \
+         curl \
+         g++ \
+         make \
+         libxslt-dev \
+         autoconf \
+    && apk add --no-cache \
+         bash \
+         openssh \
+         libjpeg-turbo-dev \
+         libwebp-dev \
+         libpng-dev \
+         libxml2-dev \
+         freetype-dev \
+         libmcrypt \
+         freetds-dev
+
+# In order to keep the images smaller, PHP's source is kept in a compressed tar file. To facilitate linking of PHP's source with any extension, we also provide the helper script docker-php-source to easily extract the tar or delete the extracted source. Note: if you do use docker-php-source to extract the source, be sure to delete it in the same layer of the docker image.
 RUN docker-php-source extract
+
+# Install PHP Core Extensions
 RUN docker-php-ext-configure pdo
 RUN docker-php-ext-configure pdo_mysql
 RUN docker-php-ext-configure opcache
@@ -41,22 +46,25 @@ RUN docker-php-ext-configure tokenizer
 RUN docker-php-ext-configure zip
 RUN docker-php-ext-configure xsl
 RUN docker-php-ext-configure shmop
-RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-configure gd \
-    --with-jpeg-dir=/usr/include --with-png-dir=/usr/include --with-webp-dir=/usr/include --with-freetype-dir=/usr/include
+    --with-jpeg-dir=/usr/include \
+    --with-png-dir=/usr/include \
+    --with-webp-dir=/usr/include \
+    --with-freetype-dir=/usr/include
 
-# Install and Enable Redis Mongodb
+
+# Install PECL extensions
+# Some extensions are not provided with the PHP source, but are instead available through PECL.
 RUN \
     apk add --no-cache --virtual .mongodb-ext-build-deps openssl-dev && \
     pecl install redis && \
     pecl install mongodb && \
     pecl clear-cache && \
     apk del .mongodb-ext-build-deps && \
-	docker-php-ext-enable redis.so && \
-	docker-php-ext-enable mongodb.so
+	docker-php-ext-enable redis && \
+	docker-php-ext-enable mongodb
 
 # Install PHP Extension
-RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install opcache
@@ -70,14 +78,18 @@ RUN docker-php-ext-install tokenizer
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install xsl
 RUN docker-php-ext-install shmop
-RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install gd
+
 
 # Delete PHP Source
 RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
-RUN apk del g++ make autoconf
+RUN apk del .build-deps
 
+# Output Log
+RUN  ln -sf /dev/stdout /usr/local/var/log/php-fpm.access.log \
+        && ln -sf /dev/stderr /usr/local/var/log/php-fpm.error.log
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
