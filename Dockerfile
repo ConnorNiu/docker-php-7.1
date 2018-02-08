@@ -91,6 +91,10 @@ RUN docker-php-source delete
 # Uninstall some dev to keep smaller
 RUN apk del .build-deps
 
+# Output Log
+RUN  ln -sf /dev/stdout /usr/local/var/log/php-fpm.access.log \
+        && ln -sf /dev/stderr /usr/local/var/log/php-fpm.error.log
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
