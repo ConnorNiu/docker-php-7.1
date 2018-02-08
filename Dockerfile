@@ -54,8 +54,6 @@ RUN docker-php-ext-configure gd \
     --with-freetype-dir=/usr/include
 
 
-
-
 # Install PECL extensions
 # Some extensions are not provided with the PHP source, but are instead available through PECL.
 RUN \
