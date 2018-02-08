@@ -78,12 +78,6 @@ RUN docker-php-ext-install pdo \
                            gd
 
 
-# Delete PHP Source
-RUN docker-php-source delete
-
-# Uninstall some dev to keep smaller
-RUN apk del .build-deps
-
 # Output Log
 RUN  ln -sf /dev/stdout /usr/local/var/log/php-fpm.access.log \
         && ln -sf /dev/stderr /usr/local/var/log/php-fpm.error.log
@@ -94,6 +88,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 # Install phpunit, the tool that we will use for testing
 RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
 RUN chmod +x /usr/local/bin/phpunit
+
+# Delete PHP Source
+RUN docker-php-source delete
+
+# Uninstall some dev to keep smaller
+RUN apk del .build-deps
 
 # Expose ports
 EXPOSE 9000
