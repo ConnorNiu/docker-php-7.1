@@ -10,21 +10,28 @@ RUN \
 	apk del tzdata
 
 # Install Software
+
 RUN apk add --no-cache --virtual .build-deps \
-        bash \
-        openssh \
-        curl \
-        libjpeg-turbo-dev \
-        libwebp-dev \
-        libpng-dev \
-        libxml2-dev \
-        freetype-dev \
-        libmcrypt \
-        autoconf \
-        g++ \
-        make \
-        freetds-dev \
-        libxslt-dev
+         build-base \
+         curl \
+         g++ \
+         make \
+         libxslt-dev \
+         autoconf \
+    && apk add --no-cache \
+         bash \
+         openssh \
+         libjpeg-turbo-dev \
+         libwebp-dev \
+         libpng-dev \
+         libxml2-dev \
+         freetype-dev \
+         libmcrypt \
+         freetds-dev \
+
+
+
+
 
 # In order to keep the images smaller, PHP's source is kept in a compressed tar file. To facilitate linking of PHP's source with any extension, we also provide the helper script docker-php-source to easily extract the tar or delete the extracted source. Note: if you do use docker-php-source to extract the source, be sure to delete it in the same layer of the docker image.
 RUN docker-php-source extract
@@ -88,7 +95,7 @@ RUN docker-php-ext-install gd
 RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
-RUN apk del g++ make autoconf
+RUN apk del .build-deps
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
