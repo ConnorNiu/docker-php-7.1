@@ -16,10 +16,10 @@ RUN apk add --no-cache --virtual .build-deps \
          curl \
          g++ \
          make \
-         libxslt-dev \
          autoconf \
     && apk add --no-cache \
          bash \
+         libxslt-dev \
          openssh \
          libjpeg-turbo-dev \
          libwebp-dev \
