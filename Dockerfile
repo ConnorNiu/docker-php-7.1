@@ -87,6 +87,7 @@ RUN docker-php-source delete
 
 # Uninstall some dev to keep smaller
 RUN apk del .build-deps
+RUN apk del curl g++ make autoconf openssl-dev
 
 # Output Log
 RUN  ln -sf /dev/stdout /usr/local/var/log/php-fpm.access.log \
