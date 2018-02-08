@@ -56,13 +56,9 @@ RUN docker-php-ext-configure pdo && \
 
 # Install PECL extensions
 # Some extensions are not provided with the PHP source, but are instead available through PECL.
-RUN pecl install redis && \
-    pecl install xdebug && \
-    pecl install mongodb && \
+RUN pecl install redis xdebug mongodb&& \
     pecl clear-cache && \
-	docker-php-ext-enable redis && \
-	docker-php-ext-enable xdebug && \
-	docker-php-ext-enable mongodb
+	docker-php-ext-enable redis xdebug mongodb
 
 # Install PHP Extension
 RUN docker-php-ext-install pdo \
