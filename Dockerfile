@@ -19,8 +19,9 @@ RUN apk add --no-cache --virtual .build-deps \
          autoconf \
     && apk add --no-cache \
          bash \
-         libxslt-dev \
          openssh \
+         libssl1.0 \
+         libxslt-dev \
          libjpeg-turbo-dev \
          libwebp-dev \
          libpng-dev \
