@@ -89,11 +89,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 RUN curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
 RUN chmod +x /usr/local/bin/phpunit
 
-# Delete PHP Source
-RUN docker-php-source delete
-
-# Uninstall some dev to keep smaller
-RUN apk del .build-deps
+# Delete PHP Source and Uninstall some dev to keep smaller
+RUN docker-php-source delete && \
+    apk del .build-deps
 
 # Expose ports
 EXPOSE 9000
