@@ -3,19 +3,18 @@ FROM php:7.2.2-fpm-alpine
 
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
+
 RUN apk add --update tzdata && \
 	cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
 	echo "${TIMEZONE}" > /etc/timezone && \
-	apk del tzdata
-
-# Install Software
-RUN apk add --no-cache --virtual .build-deps \
+	apk del tzdata && \
+    apk add --no-cache --virtual .build-deps \
             curl \
             g++ \
             make \
             autoconf \
-            openssl-dev \
- && apk add --no-cache \
+            openssl-dev && \
+    apk add --no-cache \
             bash \
             openssh \
             libssl1.0 \
@@ -65,13 +64,13 @@ RUN apk add --no-cache --virtual .build-deps \
                            xsl \
                            shmop \
                            gd && \
+    docker-php-source delete && \
+    apk del .build-deps && \
     ln -sf /dev/stdout /usr/local/var/log/php-fpm.access.log && \
     ln -sf /dev/stderr /usr/local/var/log/php-fpm.error.log && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar && \
-    chmod +x /usr/local/bin/phpunit && \
-    docker-php-source delete && \
-    apk del .build-deps
+    chmod +x /usr/local/bin/phpunit
 
 # Expose ports
 EXPOSE 9000
