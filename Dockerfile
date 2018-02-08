@@ -27,11 +27,7 @@ RUN apk add --no-cache --virtual .build-deps \
          libxml2-dev \
          freetype-dev \
          libmcrypt \
-         freetds-dev \
-
-
-
-
+         freetds-dev
 
 # In order to keep the images smaller, PHP's source is kept in a compressed tar file. To facilitate linking of PHP's source with any extension, we also provide the helper script docker-php-source to easily extract the tar or delete the extracted source. Note: if you do use docker-php-source to extract the source, be sure to delete it in the same layer of the docker image.
 RUN docker-php-source extract
@@ -109,4 +105,3 @@ EXPOSE 9000
 
 # Entry point
 CMD ["php-fpm"]
-
