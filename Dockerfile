@@ -30,10 +30,9 @@ RUN apk add --no-cache --virtual .build-deps \
          freetds-dev
 
 # In order to keep the images smaller, PHP's source is kept in a compressed tar file. To facilitate linking of PHP's source with any extension, we also provide the helper script docker-php-source to easily extract the tar or delete the extracted source. Note: if you do use docker-php-source to extract the source, be sure to delete it in the same layer of the docker image.
-RUN docker-php-source extract
-
-# Install PHP Core Extensions
-RUN docker-php-ext-configure pdo && \
+RUN docker-php-source extract && \
+    # Install PHP Core Extensions
+    docker-php-ext-configure pdo && \
     docker-php-ext-configure pdo_mysql && \
     docker-php-ext-configure mysqli && \
     docker-php-ext-configure opcache && \
@@ -58,10 +57,9 @@ RUN docker-php-ext-configure pdo && \
 # Some extensions are not provided with the PHP source, but are instead available through PECL.
 RUN pecl install redis xdebug mongodb&& \
     pecl clear-cache && \
-	docker-php-ext-enable redis xdebug mongodb
-
-# Install PHP Extension
-RUN docker-php-ext-install pdo \
+	docker-php-ext-enable redis xdebug mongodb && \
+    # Install PHP Extension
+    docker-php-ext-install pdo \
                            pdo_mysql \
                            mysqli \
                            opcache \
