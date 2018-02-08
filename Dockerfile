@@ -48,10 +48,10 @@ RUN docker-php-ext-configure pdo && \
     docker-php-ext-configure xsl && \
     docker-php-ext-configure shmop && \
     docker-php-ext-configure gd \
-    docker-php-ext-configure   --with-jpeg-dir=/usr/include \
-    docker-php-ext-configure   --with-png-dir=/usr/include \
-    docker-php-ext-configure   --with-webp-dir=/usr/include \
-    docker-php-ext-configure   --with-freetype-dir=/usr/include
+                             --with-jpeg-dir=/usr/include \
+                             --with-png-dir=/usr/include \
+                             --with-webp-dir=/usr/include \
+                             --with-freetype-dir=/usr/include
 
 
 # Install PECL extensions
