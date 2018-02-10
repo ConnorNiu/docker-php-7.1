@@ -1,10 +1,12 @@
 # Docker Image packaging for PHP
 
+![docker hub](https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square)
+![docker hub](https://img.shields.io/docker/stars/songshenzong/php.svg?style=flat-square)
 
 ##### 基于官方镜像 Based Official Image
 
 ```bash
-php:7.2.1-fpm-alpine
+php:7.2.2-fpm-alpine
 ```
 
   
