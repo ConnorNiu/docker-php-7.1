@@ -1,11 +1,3 @@
-<p align="center"><a href="https://songshenzong.com" target="_blank"><img src="https://songshenzong.com/images/logo.png"></a></p>
-
-<p align="center">
-<a href="https://hub.docker.com/r/songshenzong/php/"><img src="https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square" alt="Docker Pulls"></a>
-<a href="https://hub.docker.com/r/songshenzong/php/"><img src="https://img.shields.io/docker/stars/songshenzong/php.svg?style=flat-square" alt="Docker Stars"></a>
-</p>
-
-
 [![Songshenzong](https://songshenzong.com/images/logo.png)](https://songshenzong.com)
 
 [![Docker Stars](https://img.shields.io/docker/stars/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
