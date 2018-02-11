@@ -1,15 +1,13 @@
 <p align="center"><a href="https://songshenzong.com" target="_blank"><img src="https://songshenzong.com/images/logo.png"></a></p>
 
 <p align="center">
-<a href="https://packagist.org/packages/songshenzong/php"><img src="https://poser.pugx.org/songshenzong/php/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/songshenzong/php"><img src="https://poser.pugx.org/songshenzong/php/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/songshenzong/php"><img src="https://poser.pugx.org/songshenzong/php/license.svg" alt="License"></a>
+<a href="https://hub.docker.com/r/songshenzong/php/"><img src="https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square" alt="Docker Stars"></a>
+<a href="https://hub.docker.com/r/songshenzong/php/"><img src="https://img.shields.io/docker/stars/songshenzong/php.svg?style=flat-square" alt="Docker Pulls"></a>
 </p>
 
 # Docker Image packaging for PHP
 
-![docker hub](https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square)
-![docker hub](https://img.shields.io/docker/stars/songshenzong/php.svg?style=flat-square)
+
 
 ##### 基于官方镜像 Based Official Image
 
