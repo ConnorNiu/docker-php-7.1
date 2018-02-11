@@ -1,3 +1,11 @@
+<p align="center"><a href="https://songshenzong.com" target="_blank"><img src="https://songshenzong.com/images/logo.png"></a></p>
+
+<p align="center">
+<a href="https://packagist.org/packages/songshenzong/php"><img src="https://poser.pugx.org/songshenzong/php/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/songshenzong/php"><img src="https://poser.pugx.org/songshenzong/php/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/songshenzong/php"><img src="https://poser.pugx.org/songshenzong/php/license.svg" alt="License"></a>
+</p>
+
 # Docker Image packaging for PHP
 
 ![docker hub](https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square)
