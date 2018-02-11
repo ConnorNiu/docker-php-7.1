@@ -8,9 +8,10 @@
 
 [![Songshenzong](https://songshenzong.com/images/logo.png)](https://songshenzong.com)
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
 [![Docker Stars](https://img.shields.io/docker/stars/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
-
+[![Docker Pulls](https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
+[![Docker Automated build](https://img.shields.io/docker/automated/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
+[![Docker Build Status](https://img.shields.io/docker/build/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
 
 
 ## 关于 About
