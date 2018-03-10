@@ -14,6 +14,8 @@ RUN apk add --update tzdata  \
                  make \
                  autoconf \
                  openssl-dev  \
+                 libaio  \
+                 libaio-dev  \
     && apk add --no-cache \
                  bash \
                  openssh \
