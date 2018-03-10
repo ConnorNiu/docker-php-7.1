@@ -1,5 +1,5 @@
 # Use Alpine Linux
-FROM php:7.2.2-fpm-alpine
+FROM php:7.2.3-fpm-alpine
 
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
