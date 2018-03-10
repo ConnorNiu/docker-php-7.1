@@ -46,9 +46,9 @@ RUN apk add --update tzdata  \
                                 --with-png-dir=/usr/include \
                                 --with-webp-dir=/usr/include \
                                 --with-freetype-dir=/usr/include  \
-    && pecl install redis xdebug mongodb  \
+    && pecl install swoole redis xdebug mongodb  \
     && pecl clear-cache  \
-	&& docker-php-ext-enable redis xdebug mongodb  \
+	&& docker-php-ext-enable swoole redis xdebug mongodb  \
     && docker-php-ext-install pdo \
                            pdo_mysql \
                            mysqli \
