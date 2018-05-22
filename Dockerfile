@@ -18,7 +18,6 @@ RUN apk add --update tzdata  \
                  libaio-dev \
                  linux-headers \
                  zlib-dev \
-                 libmemcached \
     && apk add --no-cache \
                  bash \
                  openssh \
@@ -32,6 +31,7 @@ RUN apk add --update tzdata  \
                  libmcrypt \
                  freetds-dev  \
                  libmemcached-dev  \
+                 cyrus-sasl-dev  \
     && docker-php-source extract  \
     && docker-php-ext-configure pdo  \
     && docker-php-ext-configure pdo_mysql  \
