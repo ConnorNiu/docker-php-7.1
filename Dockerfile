@@ -50,9 +50,9 @@ RUN apk add --update tzdata  \
                                 --with-png-dir=/usr/include \
                                 --with-webp-dir=/usr/include \
                                 --with-freetype-dir=/usr/include  \
-    && pecl install swoole redis xdebug mongodb  \
+    && pecl install swoole redis xdebug mongodb memcached  \
     && pecl clear-cache  \
-	&& docker-php-ext-enable swoole redis xdebug mongodb  \
+	&& docker-php-ext-enable swoole redis xdebug mongodb memcached \
     && docker-php-ext-install pdo \
                            pdo_mysql \
                            mysqli \
