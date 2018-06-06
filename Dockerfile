@@ -1,5 +1,8 @@
 # Use Alpine Linux
-FROM php:7.2.5-fpm-alpine
+FROM php:7.2.6-fpm-alpine
+
+# Maintainer
+LABEL maintainer="Songshenzong <i@songshenzong.com>"
 
 # Set Timezone Environments
 ENV TIMEZONE            Asia/Shanghai
