@@ -1,5 +1,3 @@
-[![Songshenzong](http://songshenzong.com/images/logo.png)](http://songshenzong.com)
-
 [![Docker Stars](https://img.shields.io/docker/stars/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
 [![Docker Automated build](https://img.shields.io/docker/automated/songshenzong/php.svg?style=flat-square)](https://hub.docker.com/r/songshenzong/php/)
@@ -13,7 +11,7 @@ Docker Image packaging for PHP
 #### 基于官方镜像 Based Official Image
 
 ```bash
-php:7.2.6-fpm-alpine
+php:7.3-fpm-alpine
 ```
 
 #### 官网 Docker

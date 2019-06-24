@@ -1,5 +1,5 @@
 # Use Alpine Linux
-FROM php:7.2.6-fpm-alpine
+FROM php:7.3-fpm-alpine
 
 # Maintainer
 LABEL maintainer="Songshenzong <i@songshenzong.com>"
